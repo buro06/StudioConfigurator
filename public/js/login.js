@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
 
             if (data.success) {
-                alert('Login success');
+                //alert('Login success');
                 window.location.href = '/';
             } else {
                 errorMessage.textContent = data.message || 'Invalid username or password';
