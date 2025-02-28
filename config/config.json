@@ -1,0 +1,8 @@
+{
+    "port": 3000,
+    "secret": "CHANGEME",
+    "username": "scuser",
+    "password": "scpass",
+    "displayName": "Studio Manager",
+    "subscriberImgUrl": "https://picsum.photos/500/500"
+}
