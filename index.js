@@ -37,6 +37,7 @@ const isAuthenticated = (req, res, next) => {
     if (req.session && req.session.authenticated) {
         return next();
     }
+    console.log("AUTH: "+req.ip+" is not authenticated, prompted to login");
     res.redirect('/login');
 };
 
@@ -60,8 +61,10 @@ app.post('/login', (req, res) => {
         req.session.authenticated = true;
         req.session.user = username;
         res.json({ success: true });
+        console.log("LOGIN: "+req.ip+" logged in with "+username+", session ID "+req.sessionID);
     } else {
         res.status(401).json({ success: false, message: 'Invalid credentials' });
+        console.log("LOGIN: "+req.ip+" failed with "+username+" and "+password);
     }
 });
 
@@ -71,6 +74,7 @@ app.get('/logout', (req, res) => {
         if (err) {
             console.error('Error destroying session:', err);
         }
+        console.log("LOGOUT: "+req.sessionID+" logged out")
         res.redirect('/login');
     });
 });
