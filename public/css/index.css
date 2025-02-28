@@ -14,6 +14,8 @@ body {
 }
 
 .header {
+    position: fixed;
+    width: 100%;
     background-color: #333;
     color: white;
     padding: 1rem;
@@ -52,6 +54,7 @@ body {
 }
 
 .main-content {
+    margin-top: 100px;
     flex: 1;
     padding: 2rem;
     margin-bottom: 60px; /* Add space for footer */
