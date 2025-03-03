@@ -4,14 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio Configurator</title>
+    <title>Studio Configurator | Texts</title>
     <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/toastr.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.14.1/themes/smoothness/jquery-ui.css">
 </head>
 
 <body>
     <header class="header">
-        <img id="subscriberImg" src="img_girl.jpg" width="50px">
+        <a href="/"><img id="subscriberImg" href="/" src="img_girl.jpg" width="50px"></a>
         <h1>Studio Configurator</h1>
+        <div id="navbar-container"></div>
         <div class="user-section">
             <span class="username" id="user-display">User</span>
             <button class="logout-btn" id="logout-btn">Logout</button>
@@ -28,22 +32,22 @@
             <div class="form-container">
                 <div class="form-group">
                     <label for="leftAnchor">Left Anchor</label>
-                    <input type="text" id="leftAnchor" name="leftAnchor" class="form-input">
+                    <input type="text" id="leftAnchor" name="leftAnchor" class="form-input" autofill>
                 </div>
 
                 <div class="form-group">
                     <label for="rightAnchor">Right Anchor</label>
-                    <input type="text" id="rightAnchor" name="rightAnchor" class="form-input">
+                    <input type="text" id="rightAnchor" name="rightAnchor" class="form-input" autofill>
                 </div>
 
                 <div class="form-group">
                     <label for="weatherAnchor">Weather Anchor</label>
-                    <input type="text" id="weatherAnchor" name="weatherAnchor" class="form-input">
+                    <input type="text" id="weatherAnchor" name="weatherAnchor" class="form-input" autofill>
                 </div>
 
                 <div class="form-group">
                     <label for="sportsAnchor">Sports Anchor</label>
-                    <input type="text" id="sportsAnchor" name="sportsAnchor" class="form-input">
+                    <input type="text" id="sportsAnchor" name="sportsAnchor" class="form-input" autofill>
                 </div>
 
                 <div class="form-group">
@@ -58,32 +62,43 @@
                     <label for="lt3">Lower Third 3</label>
                     <input type="text" id="lt3" name="lt3" class="form-input">
                 </div>
-                <br>
-                <h3>Credits</h3><br>
+            </div>
+            <h3>Credits</h3>
+            <div class="form-container">
+                
 
                 <div class="form-group">
                     <label for="technicalDirector">Technical Director</label>
-                    <input type="text" id="technicalDirector" name="technicalDirector" class="form-input">
+                    <input type="text" id="technicalDirector" name="technicalDirector" class="form-input" autofill>
                 </div>
                 <div class="form-group">
                     <label for="floorlDirector">Floor Director</label>
-                    <input type="text" id="floorlDirector" name="floorlDirector" class="form-input">
+                    <input type="text" id="floorlDirector" name="floorlDirector" class="form-input" autofill>
                 </div>
                 <div class="form-group">
                     <label for="graphicsOperator">Graphics Operator</label>
-                    <input type="text" id="graphicsOperator" name="graphicsOperator" class="form-input">
+                    <input type="text" id="graphicsOperator" name="graphicsOperator" class="form-input" autofill>
                 </div>
                 <div class="form-group">
                     <label for="qualityControl">Quality Control</label>
-                    <input type="text" id="qualityControl" name="qualityControl" class="form-input">
+                    <input type="text" id="qualityControl" name="qualityControl" class="form-input" autofill>
                 </div>
                 <div class="form-group">
                     <label for="advisor">Advisor</label>
-                    <input type="text" id="advisor" name="advisor" class="form-input">
+                    <input type="text" id="advisor" name="advisor" class="form-input" autofill>
                 </div>
-
-                <button class="save-btn" id="save-btn">Save Configuration</button>
+                
             </div>
+            <h3>Ticker</h3>
+            <div class="form-container">
+                
+                <div class="form-group">
+                    <label for="ticker">Separate items by line break</label>
+                    <textarea id="ticker" name="ticker" class="form-input extended" rows="4"></textarea>
+                </div>
+                
+            </div>
+            <button class="save-btn" id="save-btn">Save Configuration</button>
         </div>
     </main>
 
@@ -94,8 +109,13 @@
             <a target="_blank" href="https://burrough.osbo.net">Burrough Osborne</a>
         </p>
     </footer>
-    <script src="/js/index.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.14.1/jquery-ui.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/global.js"></script>
+    <script src="/js/index.js"></script>
+    <script src="/js/toastr.js"></script>
+    <script src="/js/navbar.js"></script>
 </body>
 
 </html>

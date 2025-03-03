@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Configurator | Config</title>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/toastr.css" />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.14.1/themes/smoothness/jquery-ui.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="/"><img id="subscriberImg" href="/" src="img_girl.jpg" width="50px"></a>
+        <h1>Studio Configurator</h1>
+        <div id="navbar-container"></div>
+        <div class="user-section">
+            <span class="username" id="user-display">User</span>
+            <button class="logout-btn" id="logout-btn">Logout</button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <h2 id="greeting">Welcome,</h2>
+        <p>Welcome to Studio Configurator</p>
+
+        <div class="dashboard">
+            <h3>Autofill Names</h3>
+
+            <div class="form-container">
+                <div class="form-group">
+                    <label for="namesList">Names List</label>
+                    <textarea id="namesList" name="namesList" class="form-input extended" rows="10"></textarea>
+                </div>
+            </div>
+            
+            <button class="save-btn" id="save-btn">Save Configuration</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p class="footerHyperlink">
+            <a target="_blank" href="https://github.com/buro06/StudioConfigurator">Studio Configurator</a>
+            <span id="version"></span> by
+            <a target="_blank" href="https://burrough.osbo.net">Burrough Osborne</a>
+        </p>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.14.1/jquery-ui.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/global.js"></script>
+    <script src="/js/config.js"></script>
+    <script src="/js/toastr.js"></script>
+    <script src="/js/navbar.js"></script>
+</body>
+
+</html>

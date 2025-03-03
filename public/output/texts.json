@@ -1,14 +1,15 @@
 {
-    "leftAnchor": "la",
-    "rightAnchor": "",
-    "weatherAnchor": "",
-    "sportsAnchor": "",
-    "lt1": "lt1text",
-    "lt2": "",
-    "lt3": "",
-    "technicalDirector": "",
-    "floorlDirector": "",
-    "graphicsOperator": "",
-    "qualityControl": "",
-    "advisor": ""
+  "leftAnchor": "Name 1",
+  "rightAnchor": "Name 2",
+  "weatherAnchor": "Name 3",
+  "sportsAnchor": "",
+  "lt1": "",
+  "lt2": "",
+  "lt3": "",
+  "technicalDirector": "",
+  "floorlDirector": "",
+  "graphicsOperator": "",
+  "qualityControl": "",
+  "advisor": "",
+  "ticker": ""
 }
