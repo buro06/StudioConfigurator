@@ -47,13 +47,16 @@ const publicPaths =
         '/css/login.css',
         '/css/global.css',
         '/css/sportsTicker.css',
+        '/css/credits.css',
         '/js/login.js',
         '/js/sportsTicker.js',
-        '/sports/ticker.html',
+        '/js/credits.js',
+        '/output/sportsTicker.html',
+        '/output/credits.html',
         '/favicon.ico',
         '/data/sports.json',
         '/media/networkBug.png',
-        '/media/font.woff'
+        '/media/font.woff2'
     ]
 
 // Authentication middleware for Express routes
@@ -233,7 +236,7 @@ io.on('connection', (socket) => {
         if (type == 'favicon') {
             filePath = path.join(__dirname, 'public', "favicon.ico");
         } else if (type == 'font') {
-            filePath = path.join(__dirname, "public", 'media', 'font.woff');
+            filePath = path.join(__dirname, "public", 'media', 'font.woff2');
         } else if (type == 'subscriberImg') {
             filePath = path.join(__dirname, "public", 'media', 'subscriberImg.png');
         } else if (type == 'networkBug') {
