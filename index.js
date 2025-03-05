@@ -45,6 +45,7 @@ io.use(sharedsession(sessionMiddleware, {
 const publicPaths = 
 [
     '/css/login.css',
+    '/css/global.css',
     '/css/sportsTicker.css',
     '/js/login.js',
     '/js/sportsTicker.js',
@@ -79,6 +80,7 @@ app.get('/get', (req, res) => {
             const getData = fs.readFileSync(path.join(__dirname, 'public', 'output', 'texts.json'));
             get = JSON.parse(getData);
             if(get[param] || get[param] == '') {
+                if(typeof get[param] == 'boolean') return res.send(get[param]);
                 res.send(get[param].replace(/\n/g, config.tickerSeparator));
             } else {
                 res.send('Cannot find key with name: ' + param);

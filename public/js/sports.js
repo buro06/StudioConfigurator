@@ -1,5 +1,3 @@
-const socket = io();
-
 let sportsData = {
     games: []
 };
@@ -70,41 +68,11 @@ document.getElementById('add-game-btn').addEventListener('click', () => {
     renderSportsResults();
 });
 
-const saveBtn = document.getElementById('save-btn');
-//Process save
-saveBtn.addEventListener("click", function () {
-    const inputValues = sportsData;
-    console.log("Sending input values to server", inputValues);
-    return new Promise((resolve, reject) => {
-        // Set a timeout to reject the request if no response within 5 seconds
-        const timeout = setTimeout(() => {
-            reject(toastr["warning"]("Did not receive a response from the server after 3 seconds. Are you logged in?", 'Save timed out'));
-        }, 3000);
-
-        // Emit the event and wait for the server callback
-        socket.emit('sportsData', inputValues, (response) => {
-            clearTimeout(timeout); // Cancel the timeout
-
-            resolve(toastr[response.status](" ", response.message));
-        });
-    });
-});
+// Setup save button with custom input gathering
+setupSaveButton('sportsData', () => sportsData);
 
 // Load existing sports results
-function processFormInputs() {
-    fetch('/data/sports.json')
-        .then(response => response.json())
-        .then(data => {
-            sportsData = data;
-            renderSportsResults();
-        })
-        .catch(error => {
-            console.error('Error loading sports scores:', error);
-            toastr["error"](error, "Error loading sports scores from database");
-        });
-}
-
-
-socket.on("disconnect", () => {
-    toastr["error"]("", 'Lost socket connection to server');
-});
+processFormInputs('/data/sports.json', (data) => {
+    sportsData = data;
+    renderSportsResults();
+}, "Error loading sports scores from database");

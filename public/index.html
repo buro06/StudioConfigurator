@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Studio Configurator | Texts</title>
     <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/toastr.css" />
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.14.1/themes/smoothness/jquery-ui.css">
@@ -13,7 +14,7 @@
 
 <body>
     <header class="header">
-        <a href="/"><img id="subscriberImg" src="" width="50px"></a>
+        <a href="/"><img id="subscriberImg" src="" alt="Subscriber Logo" width="50px"></a>
         <h1>Studio Configurator</h1>
         <div id="navbar-container"></div>
         <div class="user-section">
@@ -41,12 +42,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="weatherAnchor">Weather Anchor</label>
+                    <label for="weatherAnchor">Weather Anchor <input id="weatherAnchorActive" class="form-checkbox" type="checkbox"/></label>
                     <input type="text" id="weatherAnchor" name="weatherAnchor" class="form-input" autofill>
                 </div>
 
                 <div class="form-group">
-                    <label for="sportsAnchor">Sports Anchor</label>
+                    <label for="sportsAnchor">Sports Anchor <input id="sportsAnchorActive" class="form-checkbox" type="checkbox"/></label>
                     <input type="text" id="sportsAnchor" name="sportsAnchor" class="form-input" autofill>
                 </div>
 

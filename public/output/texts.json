@@ -1,8 +1,10 @@
 {
   "leftAnchor": "Name 1",
   "rightAnchor": "Name 2",
+  "weatherAnchorActive": true,
   "weatherAnchor": "Name 3",
-  "sportsAnchor": "",
+  "sportsAnchorActive": true,
+  "sportsAnchor": "Name 4",
   "lt1": "",
   "lt2": "",
   "lt3": "",
@@ -11,5 +13,5 @@
   "graphicsOperator": "",
   "qualityControl": "",
   "advisor": "",
-  "ticker": "line 1\nline 2\nline3"
+  "ticker": "line 1\nline 2\nline 3"
 }
