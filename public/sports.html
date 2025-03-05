@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio Configurator | Config</title>
-    <link rel="stylesheet" href="/css/index.css">
+    <title>Studio Configurator | Sports</title>
+    <link rel="stylesheet" href="/css/sports.css">
     <link rel="stylesheet" href="/css/toastr.css" />
     <link rel="stylesheet" href="/css/navbar.css" />
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.14.1/themes/smoothness/jquery-ui.css">
@@ -27,13 +27,26 @@
         <p>Welcome to Studio Configurator</p>
 
         <div class="dashboard">
-            <h3>Autofill Names</h3>
+            <h3>Sports Scores Entry</h3>
 
             <div class="form-container">
-                <div class="form-group">
-                    <label for="namesList">Names List</label>
-                    <textarea id="namesList" name="namesList" class="form-input extended" rows="10"></textarea>
-                </div>
+                <table id="sports-results-table" class="sports-results">
+                    <thead>
+                        <tr>
+                            <th>Sport</th>
+                            <th>Home Team</th>
+                            <th>Home Score</th>
+                            <th>Away Team</th>
+                            <th>Away Score</th>
+                            <th>Status</th>
+                            <th>Actions <button id="add-game-btn" class="add-game-btn">Add New Game</button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="sports-results-body">
+                        <!-- Results will be dynamically populated here -->
+                    </tbody>
+                </table>
             </div>
             
             <button class="save-btn" id="save-btn">Save Configuration</button>
@@ -51,7 +64,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.14.1/jquery-ui.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/global.js"></script>
-    <script src="/js/config.js"></script>
+    <script src="/js/sports.js"></script>
     <script src="/js/toastr.js"></script>
     <script src="/js/navbar.js"></script>
 </body>

@@ -19,7 +19,6 @@ function processFormInputs() {
         });
 }
 
-var names = ["John", "Emily", "Michael", "Sarah", "David", "Jessica", "Robert", "Emma", "Daniel", "Olivia"];
 fetch('/data/config.json')
     .then(response => response.json())
     .then(data => {

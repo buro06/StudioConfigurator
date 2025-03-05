@@ -5,5 +5,6 @@
     "password": "scpass",
     "displayName": "Studio Manager",
     "subscriberImgUrl": "",
-    "tickerSeparator": "  |  "
+    "networkBugUrl": "",
+    "tickerSeparator": "   |   "
 }

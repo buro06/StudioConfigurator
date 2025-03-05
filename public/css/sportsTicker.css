@@ -1,0 +1,169 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    background-color: #f0f0f0;
+    position: relative;
+}
+
+.content-area {
+    height: calc(100vh - 60px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #666;
+}
+
+.ticker-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(to bottom, #8b0000, #d10000);
+    color: white;
+    overflow: hidden;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.logo-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #630000;
+    border-right: 2px solid #a70000;
+    overflow: hidden;
+}
+
+.sport-name-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.sport-name {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.sport-name.active {
+    opacity: 1;
+}
+
+.scores-section {
+    position: absolute;
+    left: 250px;
+    right: 100px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.score-item {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.score-item.active {
+    opacity: 1;
+}
+
+.game-info {
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+}
+
+.team {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.team-name {
+    font-weight: bold;
+    margin-right: 8px;
+    min-width: 100px;
+    text-align: right;
+}
+
+.score {
+    font-size: 22px;
+    font-weight: bold;
+    background-color: #333;
+    padding: 4px 10px;
+    border-radius: 4px;
+    min-width: 30px;
+    text-align: center;
+}
+
+.vs {
+    margin: 0 10px;
+    font-size: 16px;
+    color: #ffcccc;
+}
+
+.game-status {
+    margin-left: 15px;
+    background-color: #333;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.network-logo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #630000;
+    border-left: 2px solid #a70000;
+}
+
+.network-image {
+    width: 60px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: none;
+    border-radius: 5px;
+    padding: 0px;
+}
+
+.network-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}

@@ -42,18 +42,54 @@ io.use(sharedsession(sessionMiddleware, {
     autoSave: true
 }));
 
+const publicPaths = 
+[
+    '/css/login.css',
+    '/css/sportsTicker.css',
+    '/js/login.js',
+    '/js/sportsTicker.js',
+    '/sports/ticker.html',
+    '/favicon.ico',
+    '/data/sports.json'
+]
+
 // Authentication middleware for Express routes
 const isAuthenticated = (req, res, next) => {
-    if (req.session && req.session.authenticated) {
+    // Check if user is authenticated OR serve "public" static files without authentication
+    if ((req.session && req.session.authenticated) || publicPaths.includes(req.path)) {
         return next();
     }
     console.log("AUTH: " + req.ip + " is not authenticated on " + req.path + ", prompted to login");
     res.redirect('/login');
 };
 
-// Serve login-related static files without authentication
-app.use('/css/login.css', express.static(path.join(__dirname, 'public', 'css', 'login.css')));
-app.use('/js/login.js', express.static(path.join(__dirname, 'public', 'js', 'login.js')));
+// Serve sports ticker API and static files without authentication
+app.get('/api/public', (req, res) => {
+    res.json({
+        networkBugUrl: config.networkBugUrl
+    });
+});
+
+//Serve public get function api
+app.get('/get', (req, res) => {
+    let param = req.query.q;
+    console.log("GET: " + req.ip + " retrieved " + param);
+    if(param) {
+        try {
+            const getData = fs.readFileSync(path.join(__dirname, 'public', 'output', 'texts.json'));
+            get = JSON.parse(getData);
+            if(get[param] || get[param] == '') {
+                res.send(get[param].replace(/\n/g, config.tickerSeparator));
+            } else {
+                res.send('Cannot find key with name: ' + param);
+            }
+        } catch (error) {
+            res.send('Error reading file:' + error);
+        }
+    } else {
+        res.send('Incorrect syntax. Read documentation');
+    }
+});
 
 // Serve the login page
 app.get('/login', (req, res) => {
@@ -166,6 +202,20 @@ io.on('connection', (socket) => {
                 }
             });
             fs.writeFileSync(configFilePath, JSON.stringify(configJsonData, null, 2), 'utf8');
+            callback({ status: "success", message: 'Save successful' });
+        } catch (error) {
+            console.error('Error updating JSON file:', error);
+            callback({ status: "error", message: error.toString() });
+        }
+
+    });
+
+    socket.on('sportsData', (data, callback) => {
+        console.log('Received sports form data:', data);
+        try {
+            const sportsFilePath = path.join(__dirname, 'public', 'data', 'sports.json')
+            const sportsDataFile = fs.readFileSync(sportsFilePath, 'utf8');
+            fs.writeFileSync(sportsFilePath, JSON.stringify(data, null, 2), 'utf8');
             callback({ status: "success", message: 'Save successful' });
         } catch (error) {
             console.error('Error updating JSON file:', error);

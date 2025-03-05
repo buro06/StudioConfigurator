@@ -1,0 +1,12 @@
+{
+  "games": [
+    {
+      "sportName": "Game 1",
+      "homeTeam": "Home",
+      "homeScore": 0,
+      "awayTeam": "Away",
+      "awayScore": 0,
+      "status": "FINAL"
+    }
+  ]
+}
