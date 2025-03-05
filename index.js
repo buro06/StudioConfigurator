@@ -51,7 +51,9 @@ const publicPaths =
         '/js/sportsTicker.js',
         '/sports/ticker.html',
         '/favicon.ico',
-        '/data/sports.json'
+        '/data/sports.json',
+        '/media/networkBug.png',
+        '/media/font.woff'
     ]
 
 // Authentication middleware for Express routes
