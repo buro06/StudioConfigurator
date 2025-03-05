@@ -14,7 +14,7 @@
 
 <body>
     <header class="header">
-        <a href="/"><img id="subscriberImg" src="" alt="Subscriber Logo" width="50px"></a>
+        <a href="/"><img id="subscriberImg" src="/media/subscriberImg.png" alt="Subscriber Logo" width="50px"></a>
         <h1>Studio Configurator</h1>
         <div id="navbar-container"></div>
         <div class="user-section">
@@ -28,15 +28,35 @@
         <p>Welcome to Studio Configurator</p>
 
         <div class="dashboard">
-            <h3>Autofill Names</h3>
 
             <div class="form-container">
+                
                 <div class="form-group">
+                    <h3>Autofill Names</h3>
                     <label for="namesList">Names List</label>
                     <textarea id="namesList" name="namesList" class="form-input extended" rows="10"></textarea>
                 </div>
+                
+                <div class="form-group">
+                    <h3>Upload</h3><br>
+                    <label for="subscriberImgInput">Subscriber Image Upload (png)</label>
+                    <input type="file" id="subscriberImgInput"><br>
+                    <button onclick="uploadFile('subscriberImg')">Upload</button>
+                    <br><br>
+                    <label for="networkBugInput">Network Bug Upload (png)</label>
+                    <input type="file" id="networkBugInput"><br>
+                    <button onclick="uploadFile('networkBug')">Upload</button>
+                    <br><br>
+                    <label for="fontInput">Font Upload (woff)</label>
+                    <input type="file" id="fontInput"><br>
+                    <button onclick="uploadFile('font')">Upload</button>
+                    <br><br>
+                    <label for="faviconInput">Favicon Upload (png/ico)</label>
+                    <input type="file" id="faviconInput"><br>
+                    <button onclick="uploadFile('favicon')">Upload</button>
+                </div>
             </div>
-            
+
             <button class="save-btn" id="save-btn">Save Configuration</button>
         </div>
     </main>

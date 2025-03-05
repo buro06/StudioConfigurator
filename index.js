@@ -42,17 +42,17 @@ io.use(sharedsession(sessionMiddleware, {
     autoSave: true
 }));
 
-const publicPaths = 
-[
-    '/css/login.css',
-    '/css/global.css',
-    '/css/sportsTicker.css',
-    '/js/login.js',
-    '/js/sportsTicker.js',
-    '/sports/ticker.html',
-    '/favicon.ico',
-    '/data/sports.json'
-]
+const publicPaths =
+    [
+        '/css/login.css',
+        '/css/global.css',
+        '/css/sportsTicker.css',
+        '/js/login.js',
+        '/js/sportsTicker.js',
+        '/sports/ticker.html',
+        '/favicon.ico',
+        '/data/sports.json'
+    ]
 
 // Authentication middleware for Express routes
 const isAuthenticated = (req, res, next) => {
@@ -75,12 +75,12 @@ app.get('/api/public', (req, res) => {
 app.get('/get', (req, res) => {
     let param = req.query.q;
     console.log("GET: " + req.ip + " retrieved " + param);
-    if(param) {
+    if (param) {
         try {
             const getData = fs.readFileSync(path.join(__dirname, 'public', 'output', 'texts.json'));
             get = JSON.parse(getData);
-            if(get[param] || get[param] == '') {
-                if(typeof get[param] == 'boolean') return res.send(get[param]);
+            if (get[param] || get[param] == '') {
+                if (typeof get[param] == 'boolean') return res.send(get[param]);
                 res.send(get[param].replace(/\n/g, config.tickerSeparator));
             } else {
                 res.send('Cannot find key with name: ' + param);
@@ -224,6 +224,31 @@ io.on('connection', (socket) => {
             callback({ status: "error", message: error.toString() });
         }
 
+    });
+
+    socket.on("file-upload", ({ fileName, fileData, type }, callback) => {
+        var filePath;
+        if (type == 'favicon') {
+            filePath = path.join(__dirname, 'public', "favicon.ico");
+        } else if (type == 'font') {
+            filePath = path.join(__dirname, "public", 'media', 'font.woff');
+        } else if (type == 'subscriberImg') {
+            filePath = path.join(__dirname, "public", 'media', 'subscriberImg.png');
+        } else if (type == 'networkBug') {
+            filePath = path.join(__dirname, "public", 'media', 'networkBug.png');
+        } else {
+            return callback({ status: "error", message: "Upload type incorrect" });
+        }
+        console.log('UPLOAD: writing to server:', fileName);
+        fs.writeFile(filePath, Buffer.from(fileData, "base64"), (err) => {
+            if (err) {
+                console.error("File upload failed", err);
+                callback({ status: "error", message: err.toString() });
+            } else {
+                console.log(`File saved: ${filePath}`);
+                callback({ status: "success", message: type + ' file upload successful' });
+            }
+        });
     });
 
     // Handle disconnection

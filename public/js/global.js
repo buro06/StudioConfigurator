@@ -8,7 +8,6 @@ fetch('/api/data')
         if (data.user) {
             document.getElementById('user-display').textContent = data.user;
             document.getElementById('version').innerHTML = data.version;
-            document.getElementById('subscriberImg').src = data.subscriberImgUrl;
             updateGreeting(data.displayName);
         }
     })
@@ -70,7 +69,7 @@ function processFormInputs(jsonPath, successCallback, errorMessage) {
                 }
             });
 
-            // Optional success callback
+            // success callback
             if (successCallback) successCallback(data);
         })
         .catch(error => {
