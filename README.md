@@ -44,6 +44,21 @@ Studio Configurator is a web-based dynamic configuration software designed for b
    ```
 
 ## Usage
+Get API for text values
+```javascript
+/get?q=<texts.json key>
+Example: /get?q=leftAnchor
+```
+Styled Outputs
+```javascript
+/output/credits.html //Credits
+/output/sportsTicker.html //Sports Ticker
+```
+File Uploads
+- Subscriber Image: Logo displays only on logged in sessions
+- Network Bug: Displays on Sports Ticker on right
+- Font: Render the Credits output in this Font
+- Favicon: favicon.ico for Studio Configurator
 
 ## System Requirements
 
