@@ -2,7 +2,7 @@
 
 Studio Configurator is a web-based dynamic configuration software designed for broadcast professionals. It streamlines the management of on-air graphics, talent names, sports scores, and other broadcast elements through an intuitive interface.
 
-![Studio Configurator Interface](https://postimg.cc/ZCsnn3ct)
+![Studio Configurator Interface](https://i.postimg.cc/FHNLPVkR/temp-Image-GJEcu-U.avif)
 
 ## Features
 
