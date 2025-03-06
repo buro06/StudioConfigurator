@@ -59,7 +59,7 @@ function processFormInputs(jsonPath, successCallback, errorMessage) {
                     toastr["warning"]("Ensure the key exists in the database", `The element ID "${element.id}" was not found in the database.`);
                 }
             });
-            
+
             document.querySelectorAll(".form-checkbox").forEach(element => {
                 if (data[element.id] == true || data[element.id] == false) {
                     console.log(`Marking "${element.id}" with "${data[element.id]}" from database`);
@@ -95,6 +95,8 @@ function setupSaveButton(eventName, getInputValuesFunc) {
             // Emit the event and wait for the server callback
             socket.emit(eventName, inputValues, (response) => {
                 clearTimeout(timeout); // Cancel the timeout
+                //Let user unload page without double checking
+                window.removeEventListener("beforeunload", beforeUnloadHandler);
                 resolve(toastr[response.status](" ", response.message));
             });
         });
@@ -105,3 +107,23 @@ function setupSaveButton(eventName, getInputValuesFunc) {
 socket.on("disconnect", () => {
     toastr["error"]("", 'Lost socket connection to server');
 });
+
+
+//Ask before leaving page if form inputs were changed 
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        const formInputs = document.querySelectorAll('input, textarea');
+        formInputs.forEach(element => {
+            element.addEventListener('change', function (event) {
+                console.log('Form input value modified. Check before unload.')
+                window.addEventListener("beforeunload", beforeUnloadHandler);
+            });
+        });
+    }, 1000);
+});
+
+//Remove "are you sure you want to leave" message once user saves data
+function beforeUnloadHandler(event) {
+    event.preventDefault();
+    event.returnValue = "";
+}
