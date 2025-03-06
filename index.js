@@ -86,7 +86,8 @@ app.get('/get', (req, res) => {
             get = JSON.parse(getData);
             if (get[param] || get[param] == '') {
                 if (typeof get[param] == 'boolean') return res.send(get[param]);
-                res.send(get[param].replace(/\n/g, config.tickerSeparator));
+                if(param == 'ticker') res.send(get[param].replace(/\n/g, config.tickerSeparator)+config.tickerSeparator);
+                else res.send(get[param].replace(/\n/g, config.tickerSeparator));
             } else {
                 res.send('Cannot find key with name: ' + param);
             }
