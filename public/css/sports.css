@@ -15,6 +15,7 @@
     margin-top: 20px;
     border-collapse: collapse;
     width: 100%;
+    font-size: 14px;
 }
 .sports-results th, .sports-results td {
     border: 1px solid #ddd;
@@ -23,22 +24,60 @@
 }
 .sports-results th {
     background-color: #f2f2f2;
+    position: sticky;
+    top: 0;
 }
-.sports-results input {
+.sports-results input, .sports-results select {
     width: 100%;
     box-sizing: border-box;
     border: 1px solid #ddd;
     padding: 4px;
 }
-.add-game-btn {
-    margin: 10px 0;
+.sports-results select {
+    min-width: 120px;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.add-game-btn, .import-json-btn, .export-json-btn {
+    margin: 0;
     padding: 8px 16px;
-    background-color: #4CAF50;
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 4px;
+}
+
+.add-game-btn {
+    background-color: #4CAF50;
+}
+
+.import-json-btn {
+    background-color: #2196F3;
+}
+
+.export-json-btn {
+    background-color: #FF9800;
 }
 
 .footerHyperlink a {
     color: white;
+}
+
+.delete-game-btn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.delete-game-btn:hover {
+    background-color: #d32f2f;
 }

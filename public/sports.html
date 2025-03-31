@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio Configurator | Sports</title>
+    <title>Studio Configurator | Sports Ticker</title>
     <link rel="stylesheet" href="/css/sports.css">
     <link rel="stylesheet" href="/css/global.css">
     <link rel="stylesheet" href="/css/toastr.css" />
@@ -24,11 +24,15 @@
     </header>
 
     <main class="main-content">
-        <h2 id="greeting">Welcome,</h2>
-        <p>Welcome to Studio Configurator</p>
-
+        <h2 id="greeting">Sports Ticker Editor</h2>
+        
         <div class="dashboard">
-            <h3>Sports Scores Entry</h3>
+            <div class="controls">
+                <button id="add-game-btn" class="add-game-btn">Add New Game</button>
+                <button id="import-json-btn" class="import-json-btn">Import</button>
+                <button id="export-json-btn" class="export-json-btn">Export</button>
+                <input type="file" id="json-file-input" accept=".json" style="display: none;">
+            </div>
 
             <div class="form-container">
                 <table id="sports-results-table" class="sports-results">
@@ -39,9 +43,10 @@
                             <th>Home Score</th>
                             <th>Away Team</th>
                             <th>Away Score</th>
+                            <th>Date/Day</th>
+                            <th>Time</th>
                             <th>Status</th>
-                            <th>Actions <button id="add-game-btn" class="add-game-btn">Add New Game</button>
-                            </th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody id="sports-results-body">

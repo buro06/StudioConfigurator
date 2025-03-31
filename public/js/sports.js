@@ -10,15 +10,21 @@ function renderSportsResults() {
     sportsData.games.forEach((game, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td><input type="text" name="sportName" value="${game.sportName}" data-index="${index}"></td>
-            <td><input type="text" name="homeTeam" value="${game.homeTeam}" data-index="${index}"></td>
-            <td><input type="number" name="homeScore" value="${game.homeScore}" data-index="${index}"></td>
-            <td><input type="text" name="awayTeam" value="${game.awayTeam}" data-index="${index}"></td>
-            <td><input type="number" name="awayScore" value="${game.awayScore}" data-index="${index}"></td>
+            <td><input type="text" name="sportName" value="${game.sportName || ''}" data-index="${index}"></td>
+            <td><input type="text" name="homeTeam" value="${game.homeTeam || ''}" data-index="${index}"></td>
+            <td><input type="number" name="homeScore" value="${game.homeScore || 0}" data-index="${index}"></td>
+            <td><input type="text" name="awayTeam" value="${game.awayTeam || ''}" data-index="${index}"></td>
+            <td><input type="number" name="awayScore" value="${game.awayScore || 0}" data-index="${index}"></td>
+            <td><input type="text" name="${game.gameDate ? 'gameDate' : 'gameDay'}" 
+                       value="${game.gameDate || game.gameDay || ''}" 
+                       placeholder="${game.gameDate ? 'MM/DD' : 'DAY'}" 
+                       data-index="${index}"></td>
+            <td><input type="text" name="gameTime" value="${game.gameTime || ''}" placeholder="HH:MM AM/PM" data-index="${index}"></td>
             <td>
                 <select name="status" data-index="${index}">
+                    <option value="UPCOMING" ${game.status === 'UPCOMING' ? 'selected' : ''}>UPCOMING</option>
+                    <option value="LIVE" ${game.status === 'LIVE' ? 'selected' : ''}>LIVE</option>
                     <option value="FINAL" ${game.status === 'FINAL' ? 'selected' : ''}>FINAL</option>
-                    <option value="IN PROGRESS" ${game.status === 'IN PROGRESS' ? 'selected' : ''}>IN PROGRESS</option>
                 </select>
             </td>
             <td>
@@ -43,7 +49,19 @@ function renderSportsResults() {
 function handleInputChange(event) {
     const index = event.target.dataset.index;
     const field = event.target.name;
-    const value = event.target.value;
+    let value = event.target.value;
+
+    // Convert scores to numbers
+    if (field === 'homeScore' || field === 'awayScore') {
+        value = parseInt(value) || 0;
+    }
+
+    // Clear the opposite date/day field when one is set
+    if (field === 'gameDate') {
+        delete sportsData.games[index].gameDay;
+    } else if (field === 'gameDay') {
+        delete sportsData.games[index].gameDate;
+    }
 
     sportsData.games[index][field] = value;
 }
@@ -63,9 +81,64 @@ document.getElementById('add-game-btn').addEventListener('click', () => {
         homeScore: 0,
         awayTeam: '',
         awayScore: 0,
-        status: 'FINAL'
+        gameDay: '',
+        gameTime: '',
+        status: 'UPCOMING'
     });
     renderSportsResults();
+});
+
+// Export Games with date, time, and seconds
+document.getElementById('export-json-btn').addEventListener('click', () => {
+    const dataStr = JSON.stringify(sportsData, null, 2);
+    const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+    
+    // Get current date and time in YYYY-MM-DD-HH-MM-SS format
+    const now = new Date();
+    const dateString = [
+        now.getFullYear(),
+        String(now.getMonth() + 1).padStart(2, '0'),
+        String(now.getDate()).padStart(2, '0'),
+    ].join('-');
+    const timeString = [
+        String(now.getHours()).padStart(2, '0'),
+        String(now.getMinutes()).padStart(2, '0'),
+        String(now.getSeconds()).padStart(2, '0')
+    ].join('-');
+    
+    const exportFileDefaultName = `sc_sports-${dateString}_${timeString}.json`;
+    
+    const linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
+});
+
+// Import Games
+document.getElementById('import-json-btn').addEventListener('click', () => {
+    document.getElementById('json-file-input').click();
+});
+
+document.getElementById('json-file-input').addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        try {
+            const importedData = JSON.parse(e.target.result);
+            if (importedData && Array.isArray(importedData.games)) {
+                sportsData = importedData;
+                renderSportsResults();
+                toastr.success('Games imported successfully. Don\'t forget to save.');
+            } else {
+                toastr.error('Invalid file format. Expected object with "games" array.');
+            }
+        } catch (error) {
+            toastr.error('Error parsing file: ' + error.message);
+        }
+    };
+    reader.readAsText(file);
 });
 
 // Setup save button with custom input gathering

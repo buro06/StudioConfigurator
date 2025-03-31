@@ -1,20 +1,3 @@
 {
-  "games": [
-    {
-      "sportName": "Game 1",
-      "homeTeam": "Home",
-      "homeScore": 0,
-      "awayTeam": "Away",
-      "awayScore": 0,
-      "status": "FINAL"
-    },
-    {
-      "sportName": "Game 2",
-      "homeTeam": "Home",
-      "homeScore": 0,
-      "awayTeam": "Away",
-      "awayScore": 0,
-      "status": "FINAL"
-    }
-  ]
+  "games": []
 }

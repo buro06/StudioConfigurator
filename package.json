@@ -1,6 +1,6 @@
 {
   "name": "studioconfigurator",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Web-based dynamic studio configuration software for broadcast professionals",
   "main": "index.js",
   "scripts": {
