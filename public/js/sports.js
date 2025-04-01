@@ -15,9 +15,8 @@ function renderSportsResults() {
             <td><input type="number" name="homeScore" value="${game.homeScore || 0}" data-index="${index}"></td>
             <td><input type="text" name="awayTeam" value="${game.awayTeam || ''}" data-index="${index}"></td>
             <td><input type="number" name="awayScore" value="${game.awayScore || 0}" data-index="${index}"></td>
-            <td><input type="text" name="${game.gameDate ? 'gameDate' : 'gameDay'}" 
-                       value="${game.gameDate || game.gameDay || ''}" 
-                       placeholder="${game.gameDate ? 'MM/DD' : 'DAY'}" 
+            <td><input type="text" name="gameDate" value="${game.gameDate || ''}" 
+                       placeholder="DAY" 
                        data-index="${index}"></td>
             <td><input type="text" name="gameTime" value="${game.gameTime || ''}" placeholder="HH:MM AM/PM" data-index="${index}"></td>
             <td>
@@ -56,13 +55,6 @@ function handleInputChange(event) {
         value = parseInt(value) || 0;
     }
 
-    // Clear the opposite date/day field when one is set
-    if (field === 'gameDate') {
-        delete sportsData.games[index].gameDay;
-    } else if (field === 'gameDay') {
-        delete sportsData.games[index].gameDate;
-    }
-
     sportsData.games[index][field] = value;
 }
 
@@ -81,7 +73,7 @@ document.getElementById('add-game-btn').addEventListener('click', () => {
         homeScore: 0,
         awayTeam: '',
         awayScore: 0,
-        gameDay: '',
+        gameDate: '',
         gameTime: '',
         status: 'UPCOMING'
     });

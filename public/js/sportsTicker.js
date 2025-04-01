@@ -88,8 +88,8 @@ function initializeTicker(data) {
         if (game.status === "UPCOMING") {
             gameInfoHTML += `<div class="game-schedule">`;
             
-            if (game.gameDay) {
-                gameInfoHTML += `<div class="game-day">${game.gameDay}</div>`;
+            if (game.gameDate) {
+                gameInfoHTML += `<div class="game-day">${game.gameDate}</div>`;
             }
             
             if (game.gameTime) {
